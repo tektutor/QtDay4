@@ -15,9 +15,10 @@ UdpServer::UdpServer(int serverPort, int clientPort) {
 		SLOT ( onMessageReceived() )
 	);	
 
-	char *msg ="Hi from UDP Server !";	
+	char msg[] = "Hi from UDP Server !";	
 
 	pSocket->writeDatagram( msg, sizeof(msg), QHostAddress::LocalHost, clientPort  );
+	pSocket->flush();
 }
 
 void UdpServer::onMessageReceived() {
