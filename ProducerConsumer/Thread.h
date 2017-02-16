@@ -3,8 +3,11 @@
 #include <QString>
 #include <QThread>
 #include <QMutex>
+#include <QMutexLocker>
 #include <QDebug>
 #include <QFile>
+
+#include "CustomMutexLocker.h"
 
 enum TypeOfThread {
 	PRODUCER,

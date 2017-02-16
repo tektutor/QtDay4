@@ -55,6 +55,8 @@ void Thread::run() {
 	switch ( typeOfThread ) {
 		case PRODUCER: {
 			qDebug() << "Producer thread is ready to write ...";
+			//QMutexLocker locker(&mutex);
+			CustomMutexLocker locker (&mutex);
 			writeFile();
 			qDebug() << "Producer has notified ...";
 			waitForData.wakeOne(); //Notifies the consumer thread
@@ -69,11 +71,12 @@ void Thread::run() {
 #endif
 	
 			qDebug() << "Consumer thread waiting for notification ...";
-			mutex.lock();
+			QMutexLocker locker(&mutex);
+			//mutex.lock();
 			waitForData.wait( &mutex ); //
 			qDebug() << "Consumer received notification ...";
 			readFile();
-			mutex.unlock();
+			//mutex.unlock();
 			exec();
 		}
 		break;
