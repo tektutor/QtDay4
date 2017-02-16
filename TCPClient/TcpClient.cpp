@@ -40,7 +40,7 @@ TcpClient::TcpClient() {
 }
 
 void TcpClient::connectToServer() {
-	pClientSocket->connectToHost( QHostAddress::LocalHost, 8000 );
+	pClientSocket->connectToHost( QHostAddress("172.16.31.133"), 8000 );
 }
 
 void TcpClient::onError() {

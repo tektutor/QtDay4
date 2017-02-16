@@ -15,7 +15,8 @@ TcpServer::TcpServer(int port) {
 void TcpServer::start() {
 	qDebug() << "Server listening @ port => " << port;
 	pServerSocket->listen(
-		QHostAddress::LocalHost,
+		//QHostAddress::LocalHost,
+		QHostAddress("172.16.31.133"),
 		port	
 	);
 }
